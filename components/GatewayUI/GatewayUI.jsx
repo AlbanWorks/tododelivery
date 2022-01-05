@@ -16,11 +16,11 @@ const GatewayUI = () => {
     const [OrdenEnviada, setOrdenEnviada] = useState(false) 
     const [DirectionTitle, setDirectionTitle] = useState("Dirección *") 
 
-    const EnviarListaDeCompra1 = async () =>{
+    const EnviarListaDeCompra = async () =>{
         if(theseAreCorrect(Direction,AditionalData)){
             const Orden = CrearOrdenDeCompra()
             setOrdenEnviada(true)
-            const buyReq = await fetch("http://localhost:3000/api/hello",{
+            const buyReq = await fetch("/api/hello",{
                 method: 'POST',
                 body: JSON.stringify(Orden) 
             })
@@ -30,9 +30,7 @@ const GatewayUI = () => {
         }
         else alertInputError()
     }
-    const EnviarListaDeCompra = async () =>{
-        console.log("cambiame")
-    }
+    
     const CrearOrdenDeCompra = () => {
         let lista =[]
         CartProducts.forEach(product => {
