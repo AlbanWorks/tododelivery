@@ -82,7 +82,7 @@ const GatewayUI = () => {
                     onChange={(e)=>{setDirection(e.target.value)}} 
                     className={classes.InputText}
                 />
-                <p className={classes.Title} >Datos Adicionales, ayudanos a encontrarte</p>
+                <p className={classes.Title} >JOTOS Adicionales, ayudanos a encontrarte</p>
                 <input 
                     type="text" 
                     placeholder='ej: Descripción de la casa' 
