@@ -16,7 +16,7 @@ const GatewayUI = () => {
     const [OrdenEnviada, setOrdenEnviada] = useState(false) 
     const [DirectionTitle, setDirectionTitle] = useState("Dirección *") 
 
-    const EnviarListaDeCompra = async () =>{
+    const EnviarListaDeCompra1 = async () =>{
         if(theseAreCorrect(Direction,AditionalData)){
             const Orden = CrearOrdenDeCompra()
             setOrdenEnviada(true)
@@ -29,6 +29,9 @@ const GatewayUI = () => {
             setRecivedInfo(buyRes)
         }
         else alertInputError()
+    }
+    const EnviarListaDeCompra = async () =>{
+        console.log("cambiame")
     }
     const CrearOrdenDeCompra = () => {
         let lista =[]
