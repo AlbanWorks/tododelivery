@@ -9,10 +9,13 @@ const ProductFeed = ({category}) => {
     const {Products} = useContext(DataContext)
     const {setProducts} = useContext(DataContext)
 
-useEffect( async () => {
-    const ProductList = await getCollection(category)
-    console.log(ProductList)
-    setProducts(ProductList)  
+useEffect(() => {
+    const fetchData = async () =>{
+        const ProductList = await getCollection(category)
+        console.log(ProductList)
+        setProducts(ProductList)  
+    }
+    fetchData()
 }, [])
     
     return (

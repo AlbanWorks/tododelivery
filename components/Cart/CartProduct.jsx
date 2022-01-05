@@ -24,7 +24,7 @@ const CartProduct = ({ thisProdIndex, product}) => {
             <button onClick={ () => CambiarCantidad(-1) } className={classes.Button} >-</button>
             <button onClick={ () => CambiarCantidad(1) } className={classes.Button} >+</button>
             <button onClick={ () => BorrarProducto() } className={classes.ButtonTrash} >
-              <i class="fas fa-trash"></i>
+              <i className={"fas fa-trash"}></i>
             </button>
            </div>
         </div>
