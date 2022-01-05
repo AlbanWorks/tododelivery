@@ -1,0 +1,84 @@
+.PageContainer{
+   width: 100%;
+   display: flex;
+   justify-content: center;
+   background-color:rgb(241, 241, 241) ;
+   min-height: 100vh;
+}
+.Container{
+    width: 100%;
+    background-color: rgb(245, 245, 245);
+    display: flex;
+    flex-direction: column;
+}
+.AditionalDataContainer{
+    height: 150px;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+.Title{
+    margin:15px 0 0 5px;
+}
+.InputText{
+    outline: none;
+    border:none;
+    height: 30px;
+    border-radius: 3px;
+    width: 90%;
+    max-width: 600px;
+    margin:2px;
+    padding-left: 10px;
+    box-shadow: 0 0 8px rgb(236, 236, 236);
+}
+.InputText:focus{
+    box-shadow: 0 0 6px rgb(209, 209, 209);
+}
+.Botonera{
+    display: flex;
+    align-items: center;
+    height: 150px;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding:10px ;
+}
+.ButtonComprar{
+    outline: none;
+    border: none;
+    color: rgb(56, 56, 56);
+    background-color: rgb(127, 241, 127);
+    height: 45px;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 3px 0 3px;
+    border-radius: 2px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.ButtonComprar:active{
+    background-color: rgb(113, 199, 79);
+}
+
+.ButtonVolver{
+    outline: none;
+    border: none;
+    background-color: rgb(98, 139, 252);
+    color: rgb(53, 53, 53) ;
+    height: 35px;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 3px 0 3px;
+    border-radius: 2px;
+    font-weight: 600;
+}
+
+.ButtonVolver:active{
+    background-color: rgb(80, 118, 223);
+}
+
+@media only screen and (min-width: 500px) {
+    .Container{
+       width: 500px;
+    }
+}

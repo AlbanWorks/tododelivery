@@ -1,0 +1,43 @@
+.Container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 4px 0 4px 0 ;
+    padding-left: 10px;
+    border-bottom: 1px solid rgb(230, 230, 230);
+}
+
+.Botonera{
+    min-width: 90px;
+    margin-bottom: 3px;
+    display: flex;
+}
+
+.Button{
+    outline: none;
+    border: none;
+    width: 20px;
+    font-size: 19px;
+    font-weight: 600;
+    background: none;
+    color: rgb(80, 120, 230);
+    margin: 0 3px 0 3px;
+    border-radius: 2px;
+}
+
+.Button:active{
+    color: rgb(47, 85, 190);
+}
+.ButtonTrash{
+    outline: none;
+    border: none;
+    width: 25px;
+    background: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgb(243, 115, 115);
+}
+.ButtonTrash:active{
+    color: rgb(192, 72, 72);
+}
