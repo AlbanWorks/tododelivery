@@ -20,7 +20,7 @@ const GatewayUI = () => {
         if(theseAreCorrect(Direction,AditionalData)){
             const Orden = CrearOrdenDeCompra()
             setOrdenEnviada(true)
-            const buyReq = await fetch("./api/hello",{
+            const buyReq = await fetch("/api/hello",{
                 method: 'POST',
                 body: JSON.stringify(Orden) 
             })

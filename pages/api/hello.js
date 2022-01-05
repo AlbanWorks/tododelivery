@@ -62,6 +62,11 @@ const CalcularTotal = (l)=>{
 }
 
 const handler = async (req, res) => {
+
+  if(req.method ==='GET'){
+      res.status(200).json({hello: "andoi"})
+  }
+
   if(req.method ==='POST'){
     try {
       const orden= JSON.parse(req.body);
