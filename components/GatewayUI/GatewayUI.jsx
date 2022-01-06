@@ -4,6 +4,7 @@ import { DataContext } from '../../provider'
 import { useRouter } from 'next/router'
 import Navbar from '../Navbar/Navbar'
 import TicketListener from '../TicketListener/TicketListener'
+import { Children } from 'react/cjs/react.production.min'
 
 
 const GatewayUI = () => {

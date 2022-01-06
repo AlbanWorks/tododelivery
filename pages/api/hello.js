@@ -70,9 +70,20 @@ const handler = async (req, res) => {
   if(req.method ==='POST'){
     try {
       const orden= JSON.parse(req.body);
+      console.log(req.body)
       if(LaListaEsValida(orden.lista)){
-        const Ticket = await CrearTicket(orden)
-        console.log(Ticket)
+        //const Ticket = await CrearTicket(orden)
+       const Ticket = {
+        productosValidados: [
+          { title: 'Galleta Pepitos Original', amount: 2, price: 100 },
+          { title: 'Galletas Oreo', amount: 1, price: 100 }
+        ],
+        infoAdicional: {
+          Direction: 'calle atabalipa 123',
+          AditionalData: 'seto de fresnos'
+        },
+        precioTotal: 300
+      }
         res.status(200).json(Ticket)
       }
       else res.status(200).json({err: "lista inválida"})
