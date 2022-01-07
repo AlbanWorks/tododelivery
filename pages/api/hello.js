@@ -1,4 +1,4 @@
-import {getProduct} from "../../components/FirestoreMethods"
+import {firestore} from '../../FirebaseAdminConfig'
 
 const LaListaEsValida = (lista) =>{
   if(lista !== undefined && 
@@ -22,14 +22,12 @@ const LosProductosSonValidos = (lista) =>{
 const CrearTicket = async (orden) =>{
   const productosValidados = await ValidarEnFirebase(orden.lista)
   if(productosValidados){
-    console.log("productos validados" + productosValidados)
     const precioTotal = CalcularTotal(productosValidados)
     const Ticket = {productosValidados, infoAdicional: orden.infoAdicional, precioTotal}
     //console.log(Ticket)
     return Ticket
   }
   else{
-    console.log("error en los productos")
     return false
   } 
 }
@@ -61,6 +59,18 @@ const CalcularTotal = (l)=>{
   return total
 }
 
+const getProduct = async (category,ID ) => {
+  const docRef = firestore.doc(`${category}/${ID}`);
+  const docSnap = await docRef.get();
+  if (docSnap.exists) {
+      return docSnap.data();
+  }     
+  else {
+  // doc.data() will be undefined in this case
+   return "no existe"
+  }
+}
+
 const handler = async (req, res) => {
 
   if(req.method ==='GET'){
@@ -70,20 +80,8 @@ const handler = async (req, res) => {
   if(req.method ==='POST'){
     try {
       const orden= JSON.parse(req.body);
-      console.log(req.body)
       if(LaListaEsValida(orden.lista)){
-        //const Ticket = await CrearTicket(orden)
-       const Ticket = {
-        productosValidados: [
-          { title: 'Galleta Pepitos Original', amount: 2, price: 100 },
-          { title: 'Galletas Oreo', amount: 1, price: 100 }
-        ],
-        infoAdicional: {
-          Direction: 'calle atabalipa 123',
-          AditionalData: 'seto de fresnos'
-        },
-        precioTotal: 300
-      }
+       const Ticket = await CrearTicket(orden)
         res.status(200).json(Ticket)
       }
       else res.status(200).json({err: "lista inválida"})
