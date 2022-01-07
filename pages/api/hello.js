@@ -1,4 +1,5 @@
 import {getProduct} from "../../components/FirestoreMethods"
+import {firestore} from '../../firebaseServerside'
 
 const LaListaEsValida = (lista) =>{
   if(lista !== undefined && 
