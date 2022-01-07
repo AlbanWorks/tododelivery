@@ -1,5 +1,4 @@
 import admin from 'firebase-admin'
-import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore"
 
 //debo proteger los parámetros debajo con variables de entorno, en especial privateKey
