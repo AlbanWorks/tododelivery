@@ -1,6 +1,6 @@
 import {firestore} from '../../FirebaseAdminConfig'
 import {db} from '../../firebaseConfig'
-import { collection, getDocs, doc, getDoc, setDoc, updateDoc } from "firebase/firestore"
+
 
 export default async function handler(req, res) {
     
@@ -17,10 +17,10 @@ export default async function handler(req, res) {
     }
 
     if(req.method ==='POST'){
-       const datos = await getProduct("frutas","anana") 
-       console.log(datos)
-       //console.log(firestore)
-        res.status(200).json(datos)
+       //const datos = await getProduct("frutas","anana") 
+      // console.log(datos)
+       console.log(firestore)
+        res.status(200).json(firestore)
     }
 
    
