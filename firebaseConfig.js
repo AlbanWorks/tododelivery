@@ -2,6 +2,8 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore"
 import { getStorage, ref } from "firebase/storage";
 
+console.log("tambien se ejecuta fbconfig cliente")
+
 const firebaseConfig = {
   apiKey: "AIzaSyAQ7oOqdAVttihA3hB19KogVIPp0wlV6kI",
   authDomain: "delivery-ecomerce-template.firebaseapp.com",

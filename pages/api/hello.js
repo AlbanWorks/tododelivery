@@ -1,4 +1,9 @@
-import {firestore} from '../../FirebaseAdminConfig'
+import Firestore from './backend/FirebaseAdminConfig'
+import EnviarTelegram from '../../TelegramBot'
+
+
+
+console.log("asies")
 
 const LaListaEsValida = (lista) =>{
   if(lista !== undefined && 
@@ -59,15 +64,31 @@ const CalcularTotal = (l)=>{
   return total
 }
 
+const ConstruirMensaje = (Ticket) =>{
+let msj = "PEDIDO:\n\n"
+Ticket.productosValidados.forEach(p => {
+  msj = msj.concat(`${p.amount} ${p.title}\n`)
+});
+msj = msj.concat(`\n${Ticket.infoAdicional.Direction}, ${Ticket.infoAdicional.AditionalData}`)
+msj = msj.concat(`\n\nTotal: $${Ticket.precioTotal}`)
+
+return msj
+}
+
+const NotificarAlAdmin = (Ticket) =>{
+  const mensaje = ConstruirMensaje(Ticket)
+  EnviarTelegram(mensaje)
+}
+
 const getProduct = async (category,ID ) => {
-  const docRef = firestore.doc(`${category}/${ID}`);
+  const docRef = Firestore().doc(`${category}/${ID}`);
   const docSnap = await docRef.get();
   if (docSnap.exists) {
       return docSnap.data();
   }     
   else {
   // doc.data() will be undefined in this case
-   return "no existe"
+   return false
   }
 }
 
@@ -81,10 +102,15 @@ const handler = async (req, res) => {
     try {
       const orden= JSON.parse(req.body);
       if(LaListaEsValida(orden.lista)){
-       const Ticket = await CrearTicket(orden)
+      const Ticket = await CrearTicket(orden)
+      if(Ticket){
         res.status(200).json(Ticket)
+        //console.log(Ticket)
+        NotificarAlAdmin(Ticket)
       }
-      else res.status(200).json({err: "lista inválida"})
+      else  res.status(400).json({err: "productos inexistentes"})
+      }
+      else res.status(400).json({err: "lista inválida"})
     } 
     catch(e) {
       console.log(e)
