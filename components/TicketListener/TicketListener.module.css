@@ -18,6 +18,12 @@
     margin-left: 15px;
     font-size: 18px;
 }
+.InfoTitle{
+    margin:40px 0 10px 0;
+    color: rgb(80, 80, 80);
+    font-size: 18px;
+    text-align: center;
+}
 
 
 .ErrorContainer{

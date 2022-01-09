@@ -5,7 +5,6 @@ import { useRouter } from 'next/router'
 import Navbar from '../Navbar/Navbar'
 import TicketListener from '../TicketListener/TicketListener'
 
-
 const GatewayUI = () => {
 
 
@@ -17,6 +16,7 @@ const GatewayUI = () => {
     const [OrdenEnviada, setOrdenEnviada] = useState(false) 
     //const [DirectionTitle, setDirectionTitle] = useState("Dirección *")
     const DirectionTitle =useRef()
+    const router = useRouter()   
 
     const EnviarListaDeCompra = async () =>{
         if(theseAreCorrect(Direction,AditionalData)){

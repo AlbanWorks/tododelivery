@@ -8,7 +8,7 @@
 }
 
 .Botonera{
-    min-width: 90px;
+    min-width: 110px;
     margin-bottom: 3px;
     display: flex;
 }
@@ -21,7 +21,7 @@
     font-weight: 600;
     background: none;
     color: rgb(80, 120, 230);
-    margin: 0 3px 0 3px;
+    margin: 0 8px 0 8px;
     border-radius: 2px;
 }
 
@@ -30,6 +30,7 @@
 }
 .ButtonTrash{
     outline: none;
+    margin: 0 8px 0 8px;
     border: none;
     width: 25px;
     background: none;

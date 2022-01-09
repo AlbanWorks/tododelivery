@@ -13,6 +13,8 @@ const Product = ({LocalProduct}) => {
     const AddToCart = (product) => {
         //el set timeout es para dar una sensacion de trabajo
         setButtonText("Agregando...")
+        //Reinicio el contador por temas de UX
+        setAmount(1)
         setTimeout(() => {
             //ver si el producto ya existe
             const IndexProd = CartProducts.indexOf(product)
@@ -40,7 +42,7 @@ const Product = ({LocalProduct}) => {
                 <h3 className={classes.Title} >{LocalProduct["title"]}</h3>
                 <div className={classes.Price}  >${LocalProduct["price"]}</div>
                <div className={classes.UIContainer} >
-                    <AmountUI alCambiar={(n)=>setAmount(n)}/>
+                    <AmountUI amount={amount} alCambiar={(n)=>setAmount(n)}  />
                     <button onClick={()=>AddToCart(LocalProduct)} className={classes.Button} >
                         {ButtonText}
                     </button>

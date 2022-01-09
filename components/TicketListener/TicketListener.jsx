@@ -3,11 +3,10 @@ import classes from './TicketListener.module.css'
 import Link from 'next/link'
 import Spinner from '../Spinner/Spinner'
 
+
 const TicketListener = ({info}) => {
     //const info = {waiting:"el coño de tu mama"}
-const totalProducto= (item)=>{
-return item.amount * item.price
-}
+     
 
 const LenghtOf= (obj)=> { return Object.keys(obj).length}
 
@@ -15,11 +14,11 @@ return (
 <div className={classes.Container} >{
      LenghtOf(info) === 0 ? (
         <div className={classes.InfoContainer} > 
+            <h2 className={classes.InfoTitle}>
+                Danos algo de información antes de hacer tu pedido, te lo mandamos donde estés.
+            </h2>
             <p className={classes.Info}>
                 Si olvidaste algo podes <Link href="/">volver</Link> y revisar tu carrito <b>antes de comprar.</b> 
-            </p>
-            <p className={classes.Info}>
-                Danos algo de información antes de hacer tu pedido, te lo mandamos donde estés.
             </p>
             <p className={classes.Info}>
                 Se abona al llegar el pedido, pronto contaremos con <b>Mercado Pago</b> y <b>Ualá</b>
