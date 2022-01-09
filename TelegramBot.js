@@ -13,8 +13,8 @@ const EnviarTelegram = async (msj) =>{
     const mensajeUTF8= encodeURIComponent(msj)
     const request = await fetch(`https://api.telegram.org/bot5079902652:AAFX8bBD_cpqxAUA1JZf2UfOiqfBmYGuts4/sendMessage?chat_id=${michat_id}&text=${mensajeUTF8}`)
     const response = await request.json();
-    if(response.ok){
-      return {enviado}
+    if(response.ok === true){
+      return {enviado:"ok"}
     }
     else{
       return {error: JSON.stringify(response)}

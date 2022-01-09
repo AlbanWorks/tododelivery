@@ -101,10 +101,12 @@ const handler = async (req, res) => {
       if(Ticket){
         const mensaje = ConstruirMensaje(Ticket)
         const Telegram = await EnviarTelegram(mensaje)
+        console.log("este es el telegram crudo"+ Telegram)
         if(Telegram.enviado){
           res.status(200).json(Ticket)
         }
         else {
+          console.log(Telegram.error)
           res.status(500).json({err: Telegram.error})
         }
       }
