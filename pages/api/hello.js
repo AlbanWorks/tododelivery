@@ -75,11 +75,6 @@ msj = msj.concat(`\n\nTotal: $${Ticket.precioTotal}`)
 return msj
 }
 
-const NotificarAlAdmin = (Ticket) =>{
-  const mensaje = ConstruirMensaje(Ticket)
-  EnviarTelegram(mensaje)
-}
-
 const getProduct = async (category,ID ) => {
   const docRef = Firestore().doc(`${category}/${ID}`);
   const docSnap = await docRef.get();
@@ -104,9 +99,14 @@ const handler = async (req, res) => {
       if(LaListaEsValida(orden.lista)){
       const Ticket = await CrearTicket(orden)
       if(Ticket){
-        res.status(200).json(Ticket)
-        //console.log(Ticket)
-        NotificarAlAdmin(Ticket)
+        const mensaje = ConstruirMensaje(Ticket)
+        const Telegram = await EnviarTelegram(mensaje)
+        if(Telegram.enviado){
+          res.status(200).json(Ticket)
+        }
+        else {
+          res.status(500).json({err: Telegram.error})
+        }
       }
       else  res.status(400).json({err: "productos inexistentes"})
       }

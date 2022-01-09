@@ -11,12 +11,17 @@ const EnviarTelegram = async (msj) =>{
   try{
     //debo pasar el url a utf-8 porque a veces hay acentos y cosas y arroja error en la API
     const mensajeUTF8= encodeURIComponent(msj)
-    const request = await fetch(`https://api.telegram.org/bot5079902652:AAFX8bBD_cpqxAUA1JZf2UfOiqfBmYGuts4/sendMessage?chat_id=${michat_id}&text=${mensajeUTF8}`)
+    const request = await fetch(`https://api.telegram.org/bot5079902652:AAFX8bBD_cpqxAUA1JZf2UfOiqfBmYGuts4/sendMessage?chat_id=${michat_id}&text=${msj}`)
     const response = await request.json();
-    console.log(response)
+    if(response.ok){
+      return {enviado}
+    }
+    else{
+      return {error: JSON.stringify(response)}
+    }
   }
   catch(err){
-    console.log(err)
+    return {error: JSON.stringify(err)}
   }
 }
 
