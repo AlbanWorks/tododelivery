@@ -43,7 +43,7 @@ const IniciarCompra= () =>{
                         {CartProducts.map((item,index)=>
                             <CartProduct key ={index} thisProdIndex= {index} product = {item}/>
                         )} {EmptyCartAlert ? (
-<p>El carrito está vacío</p>
+<p>-El carrito está vacío...</p>
                         ):(
 <></>
                         ) }

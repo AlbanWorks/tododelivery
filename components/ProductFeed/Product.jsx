@@ -8,29 +8,26 @@ const Product = ({LocalProduct}) => {
     const {CartProducts} = useContext(DataContext)
     const {setCartProducts} = useContext(DataContext)
     const [amount, setAmount] = useState(1)
-    const [ButtonText, setButtonText] = useState("Añadir al Carrito")
+    const [ButtonText, setButtonText] = useState("Agregar al Carrito")
 
     const AddToCart = (product) => {
-        ChangeButtonText()
-        //ver si el producto ya existe
-        const IndexProd = CartProducts.indexOf(product)
-        //si indexof da -1 no existe un producto igual
-        if( IndexProd === -1){
-            //le creo una propiedad que indique cuantos productos hay del mismo tipo
-            product["amount"] = amount
-            setCartProducts([ ... CartProducts, product ])
-        }
-        else{
-            //el producto ya existe, solo le sumo ammont ++
-            CartProducts[IndexProd]["amount"] += amount 
-            setCartProducts([...CartProducts])
-        }  
-    }
-
-    const ChangeButtonText= () =>{
-        setButtonText("Añadiendo...")
+        //el set timeout es para dar una sensacion de trabajo
+        setButtonText("Agregando...")
         setTimeout(() => {
-            setButtonText("Añadir al Carrito")
+            //ver si el producto ya existe
+            const IndexProd = CartProducts.indexOf(product)
+            //si indexof da -1 no existe un producto igual
+            if( IndexProd === -1){
+                //le creo una propiedad que indique cuantos productos hay del mismo tipo
+                product["amount"] = amount
+                setCartProducts([ ... CartProducts, product ])
+            }
+            else{
+                //el producto ya existe, solo le sumo ammont ++
+                CartProducts[IndexProd]["amount"] += amount 
+                setCartProducts([...CartProducts])
+            }  
+            setButtonText("Agregar al Carrito")
         }, 700);
     }
 

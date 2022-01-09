@@ -2,9 +2,8 @@
 import Head from 'next/head'
 import classes from './styles/pageStyles.module.css'
 import ProductFeed from "../components/ProductFeed/ProductFeed"
-import Navbar from "../components/Navbar/Navbar"
+import MainNavbar from "../components/Navbar/MainNavbar"
 import Cart from '../components/Cart/Cart'
-import Golosinas from './golosinas'
 import CategoryMenu from '../components/CategoryMenu/CategoryMenu'
 export default function Home() {
 
@@ -13,7 +12,7 @@ export default function Home() {
        <Head>
     <title>Todo Delivery</title>
       </Head>
-      <Navbar/>
+      <MainNavbar/>
       <CategoryMenu/>
       <Cart/>
     </div>

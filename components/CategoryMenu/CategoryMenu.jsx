@@ -8,19 +8,22 @@ const CategoryMenu = () => {
 
     const goTo = (direction) => router.push(direction)
     
-    
     return (
         <div className={classes.Container}>
             <div className={classes.Menu} >
-                <button className={classes.ButtonApple} onClick={()=>goTo('/frutas')} > 
-                    <i className={"fas fa-apple-alt"}></i>
+                <h2 className={classes.MenuTitle}> Categorías </h2>
+                <button className={classes.Button}
+                onClick={()=>goTo('/frutas')} > 
                     Frutas 
                 </button>
-                <button className={classes.ButtonCookie} onClick={()=>goTo('/golosinas')} > 
-                    <i className={"fas fa-cookie"}></i>
+                <button className={classes.Button}
+                onClick={()=>goTo('/golosinas')} > 
                     Golosinas 
                 </button>
+                <button className={classes.Button}>Mercadería General</button>
+                <button className={classes.Button}>Art Limpieza</button>
             </div>
+            <div className={classes.Ball}/>
         </div>
     )
 }

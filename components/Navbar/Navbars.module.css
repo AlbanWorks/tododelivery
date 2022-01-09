@@ -1,0 +1,59 @@
+.Nav{
+    background-color: rgb(54, 98, 219);
+    box-shadow: 0 0 10px rgb(192, 192, 192);
+    height: 50px;
+    width: 100%;
+    position:fixed;
+    display: flex;
+    align-items: center;
+
+}
+.Title{
+    margin:0;
+    margin-left: 10px;
+    font-size: 25px;
+    color: white;
+    text-shadow: 0 0 10px rgb(32, 16, 175);
+}
+
+.MainNavbarContainer{
+    width: 100%;
+}
+.MainNavbar{
+    background-color: rgb(54, 98, 219);
+    height: 50px;
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center
+}
+.MainNavbarTitle{
+    position: absolute;
+    margin:0;
+    margin-left: 10px;
+    font-size: 25px;
+    color: white;
+    text-shadow: 0 0 10px rgb(32, 16, 175);
+    z-index: 500;
+}
+
+@media only screen and (min-width: 800px) {
+    .Wave{
+        position: absolute;
+        top:-10px;
+        width: 100%;
+    }
+}
+@media only screen and (min-width: 1300px) {
+    .MainNavbarTitle{
+        font-size: 30px;
+    }
+    .Wave{
+        top:-46px;
+    }
+}
+@media only screen and (min-width: 1500px) {
+    .Wave{
+        top:-60px;
+    }
+}

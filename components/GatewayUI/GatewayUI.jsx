@@ -1,21 +1,22 @@
-import React,{useState,useContext} from 'react'
+import React,{useState,useContext,useRef} from 'react'
 import classes from './GatewayUI.module.css'
 import { DataContext } from '../../provider'
 import { useRouter } from 'next/router'
 import Navbar from '../Navbar/Navbar'
 import TicketListener from '../TicketListener/TicketListener'
-import { Children } from 'react/cjs/react.production.min'
 
 
 const GatewayUI = () => {
 
-    const router = useRouter()
+
     const {CartProducts} = useContext(DataContext)
+    const {setCartProducts} = useContext(DataContext)
     const [Direction, setDirection] = useState("") 
     const [AditionalData, setAditionalData] = useState("none") 
     const [RevicedInfo, setRecivedInfo] = useState({}) 
     const [OrdenEnviada, setOrdenEnviada] = useState(false) 
-    const [DirectionTitle, setDirectionTitle] = useState("Dirección *") 
+    //const [DirectionTitle, setDirectionTitle] = useState("Dirección *")
+    const DirectionTitle =useRef()
 
     const EnviarListaDeCompra = async () =>{
         if(theseAreCorrect(Direction,AditionalData)){
@@ -26,12 +27,11 @@ const GatewayUI = () => {
                 body: JSON.stringify(Orden) 
             })
             const buyRes = await buyReq.json();
-            console.log(buyRes)
             setRecivedInfo(buyRes)
+            DecideIfCartSouldBeEmptied(buyRes)
         }
         else alertInputError()
-    }
-    
+    }    
     const CrearOrdenDeCompra = () => {
         let lista =[]
         CartProducts.forEach(product => {
@@ -47,17 +47,20 @@ const GatewayUI = () => {
     }
     const theseAreCorrect = (dir, adata)=>{
      if(typeof dir ==='string' 
-     && dir.length > 12 
+     && dir.length > 9 
      && dir.length < 100
      && typeof adata ==='string'
      && adata.length < 150)return true
      else return false
     }
     const alertInputError= ()=>{
-        setDirectionTitle("Por favor coloque datos válidos")
+        DirectionTitle.current.style.color = "red"
         setTimeout(() => {
-            setDirectionTitle("Direccion *")
+            DirectionTitle.current.style.color = "black"
         }, 1500);
+    }
+    const DecideIfCartSouldBeEmptied = (buyRes)=>{
+        if(!buyRes.err) setCartProducts([])
     }
     return (
         <div className={classes.PageContainer} >
@@ -77,16 +80,16 @@ const GatewayUI = () => {
             ):(
             <div className={classes.GatewayUI} >
                 <div className={classes.AditionalDataContainer} >
-                <p className={classes.Title} >{DirectionTitle}</p>
+                <p className={classes.Title} ref={DirectionTitle}>Dirección</p>
                 <input 
                     type="text" 
                     onChange={(e)=>{setDirection(e.target.value)}} 
                     className={classes.InputText}
                 />
-                <p className={classes.Title} >JOTOS Adicionales, ayudanos a encontrarte</p>
+                <p className={classes.Title} >Datos Adicionales, ayudanos a encontrarte</p>
                 <input 
                     type="text" 
-                    placeholder='ej: Descripción de la casa' 
+                    placeholder='ej: Descripción de la casa, tu nombre, etc.' 
                     onChange={(e)=>{setAditionalData(e.target.value)}}
                     className={classes.InputText}
                 />
@@ -95,7 +98,7 @@ const GatewayUI = () => {
                     <button 
                         onClick={() => EnviarListaDeCompra()} 
                         className={classes.ButtonComprar}
-                    > Comprar </button>
+                    > Hacer Pedido </button>
                     <button 
                         onClick={()=>{router.push('/')}} 
                         className={classes.ButtonVolver}

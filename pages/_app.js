@@ -12,7 +12,9 @@ function MyApp({ Component, pageProps }) {
     <meta name="description" content="Web site created using create-react-app"/>
     <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin/>
-<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200&display=swap" rel="stylesheet"/> 
+ <meta name="theme-color" content="rgb(54, 98, 219)"/>
+ <meta name="msapplication-navbutton-color" content="rgb(54, 98, 219)"/>
       </Head>
       <Script src="https://kit.fontawesome.com/87e51fd4dd.js" crossOrigin></Script>
       <Component {...pageProps}/>
