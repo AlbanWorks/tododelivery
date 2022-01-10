@@ -47,8 +47,7 @@ const updateProduct = async (ID, updates ) => {
 }
 
 const getCollection = async (Collection) => {
-    try{
-        const querySnapshot = await getDocs(collection( db, Collection ));
+    const querySnapshot = await getDocs(collection( db, Collection ));
     let ArrayOfDocs = []
     querySnapshot.forEach((doc) => {
         let docSnapshot = doc.data()
@@ -57,11 +56,6 @@ const getCollection = async (Collection) => {
         ArrayOfDocs.push(docSnapshot) 
     });
     return ArrayOfDocs
-    }
-    catch(err){
-        console.log("cacha el error")
-        return err
-    }
 }
 
 export { setProduct, uploadPicture, getImageURL, getProduct, getCollection, updateProduct }  
