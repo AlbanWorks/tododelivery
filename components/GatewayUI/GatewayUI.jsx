@@ -14,9 +14,10 @@ const GatewayUI = () => {
     const [AditionalData, setAditionalData] = useState("none") 
     const [RevicedInfo, setRecivedInfo] = useState({}) 
     const [OrdenEnviada, setOrdenEnviada] = useState(false) 
-    //const [DirectionTitle, setDirectionTitle] = useState("Dirección *")
-    const DirectionTitle =useRef()
-    const router = useRouter()   
+    const [DirectionTitle, setDirectionTitle] = useState("Dirección *")
+    const DirectionRef =useRef()
+    const PageContainer =useRef()
+    const router = useRouter() 
 
     const EnviarListaDeCompra = async () =>{
         if(theseAreCorrect(Direction,AditionalData)){
@@ -28,6 +29,7 @@ const GatewayUI = () => {
                 body: JSON.stringify(Orden) 
             })
             const buyRes = await buyReq.json();
+            console.log("esta es la bayres"+ buyRes)
             setRecivedInfo(buyRes)
             DecideIfCartSouldBeEmptied(buyRes)
         }
@@ -55,16 +57,23 @@ const GatewayUI = () => {
      else return false
     }
     const alertInputError= ()=>{
-        DirectionTitle.current.style.color = "red"
+        DirectionRef.current.style.color = "red"
+        setDirectionTitle("Coloque una dirección válida")
         setTimeout(() => {
-            DirectionTitle.current.style.color = "black"
-        }, 1500);
+            DirectionRef.current.style.color = "black"
+            setDirectionTitle("Dirección *")
+        }, 2000);
     }
     const DecideIfCartSouldBeEmptied = (buyRes)=>{
         if(!buyRes.err) setCartProducts([])
     }
+
+    const ScrollToBottom = ()=>{
+        PageContainer.current.scrollTop = PageContainer.current.scrollHeight
+    }
+
     return (
-        <div className={classes.PageContainer} >
+        <div className={classes.PageContainer} ref={PageContainer}>
               <Navbar/>
             <div className={classes.Container} >
             <TicketListener info={RevicedInfo} className={classes.TListener} />
@@ -81,10 +90,11 @@ const GatewayUI = () => {
             ):(
             <div className={classes.GatewayUI} >
                 <div className={classes.AditionalDataContainer} >
-                <p className={classes.Title} ref={DirectionTitle}>Dirección</p>
+                <p className={classes.Title} ref={DirectionRef}>{DirectionTitle}</p>
                 <input 
                     type="text" 
                     onChange={(e)=>{setDirection(e.target.value)}} 
+                    onFocus={()=>ScrollToBottom()}
                     className={classes.InputText}
                 />
                 <p className={classes.Title} >Datos Adicionales, ayudanos a encontrarte</p>
@@ -92,6 +102,7 @@ const GatewayUI = () => {
                     type="text" 
                     placeholder='ej: Descripción de la casa, tu nombre, etc.' 
                     onChange={(e)=>{setAditionalData(e.target.value)}}
+                    onFocus={()=>ScrollToBottom()}
                     className={classes.InputText}
                 />
                 </div>
