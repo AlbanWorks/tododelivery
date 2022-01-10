@@ -14,7 +14,7 @@ const ProductFeed = ({category}) => {
     useEffect(() => {
         const fetchData = async () =>{
             const ProductList = await getCollection(category)
-            console.log(ProductList)
+            console.log("laprodulist: "+ProductList)
             setProducts(ProductList)  
             SetProductsFetched(true)
         }
@@ -23,16 +23,15 @@ const ProductFeed = ({category}) => {
     
     return (
         <div className={classes.ProductFeed}>{
-ProductsFetched ? (
-    Products.map((item,index)=>
-    <Product key={index} LocalProduct = {item} />
-)
-):(
-<Spinner/>
-)
-        }
-           
-             
+            ProductsFetched ? (
+                Products.map((item,index)=>
+                    <Product key={index} LocalProduct = {item} />
+                )
+            ):(
+                <div className={classes.SpinnerContainerPF} >
+                    <Spinner/>
+                </div>
+            )}
         </div>
     )
 }

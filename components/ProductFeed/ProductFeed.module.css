@@ -8,9 +8,18 @@
     
     box-sizing: border-box;
 }
+
+.SpinnerContainerPF{
+    height: 50vh;
+    width: 100%;
+}
+
 @media only screen and (min-width: 600px) {
     .ProductFeed{
         flex-direction: row;
         flex-wrap: wrap;
+    }
+    .SpinnerContainerPF{
+        height: auto;
     }
   }
