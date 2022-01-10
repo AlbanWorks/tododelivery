@@ -22,6 +22,7 @@ const GatewayUI = () => {
         if(theseAreCorrect(Direction,AditionalData)){
             const Orden = CrearOrdenDeCompra()
             setOrdenEnviada(true)
+            setRecivedInfo({waiting:"show spinner"})
             const buyReq = await fetch("/api/hello",{
                 method: 'POST',
                 body: JSON.stringify(Orden) 

@@ -65,11 +65,11 @@ const CalcularTotal = (l)=>{
 }
 
 const ConstruirMensaje = (Ticket) =>{
-let msj = "PEDIDO:\n\n"
+let msj = "🟢 NUEVO PEDIDO:\n\n"
 Ticket.productosValidados.forEach(p => {
   msj = msj.concat(`${p.amount} ${p.title}\n`)
 });
-msj = msj.concat(`\n${Ticket.infoAdicional.Direction}, ${Ticket.infoAdicional.AditionalData}`)
+msj = msj.concat(`\n Para: ${Ticket.infoAdicional.Direction}, ${Ticket.infoAdicional.AditionalData}`)
 msj = msj.concat(`\n\nTotal: $${Ticket.precioTotal}`)
 
 return msj
@@ -88,10 +88,6 @@ const getProduct = async (category,ID ) => {
 }
 
 const handler = async (req, res) => {
-
-  if(req.method ==='GET'){
-      res.status(200).json({hello: "andoi"})
-  }
 
   if(req.method ==='POST'){
     try {
