@@ -1,0 +1,99 @@
+
+.CartContainer{
+    background-color: rgba(0, 0, 0, 0.411);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+}
+
+.Cart{
+    background-color: rgb(247, 247, 247);
+    min-height: 400px;
+    max-width: 500px;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 3px;
+}
+.Titulo{
+    text-align: center;
+}
+.ProductBill{
+    background-color: rgb(255, 255, 255);
+    width: 100%;
+    min-height: 250px;
+}
+.Total{
+    margin:20px;
+}
+.Botonera{
+    display: flex;
+    justify-content: space-evenly;
+    height: 50px;
+    margin-bottom: 5px;
+}
+.ButtonVacia{
+    font-family: sans-serif;
+    outline: none;
+    border: none;
+    background-color: rgb(243, 115, 115);
+    display: flex;
+    width: 80px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3px;
+    
+}
+.ButtonVacia:active{
+    background-color: rgb(194, 77, 77);
+}
+.ButtonCom{
+    font-family: sans-serif;
+    outline: none;
+    border: none;
+    color: rgb(56, 56, 56);
+    background-color: rgb(127, 241, 127);
+    display: flex;
+    width: 110px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3px;
+    
+}
+.ButtonCom:active{
+    background-color: rgb(84, 199, 84);
+}
+.ButtonVolver{
+    font-family: sans-serif;
+    outline: none;
+    border: none;
+    background-color: rgb(88, 130, 245);
+    display: flex;
+    width: 80px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3px;
+    
+}
+.ButtonVolver:active{
+    background-color: rgb(68, 104, 201);
+}
+
+@media only screen and (min-width: 500px) {
+    .ButtonCom{
+        width: 200px;
+    }
+    .ButtonVacia{
+        width: 100px;
+    }
+    .ButtonVolver{
+        width: 100px;
+    }
+}

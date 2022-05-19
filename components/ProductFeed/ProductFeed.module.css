@@ -1,0 +1,25 @@
+.ProductFeed{
+    background-color: rgb(247, 247, 247);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 100px ;
+    min-height: 100vh;
+    
+    box-sizing: border-box;
+}
+
+.SpinnerContainerPF{
+    height: 50vh;
+    width: 100%;
+}
+
+@media only screen and (min-width: 600px) {
+    .ProductFeed{
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    .SpinnerContainerPF{
+        height: auto;
+    }
+  }

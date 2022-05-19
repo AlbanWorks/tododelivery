@@ -1,0 +1,64 @@
+.Container{
+    display: flex;
+    min-height: 50vh;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+.Menu{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+    max-width: 800px;
+    z-index: 1000;
+}
+.MenuTitle{
+    width: 100%;
+    text-align: center;
+    color: rgb(68, 68, 68);
+}
+
+.Button{
+    outline:none;
+    background:none;
+    background-color: rgb(116, 223, 116);
+    box-shadow: 1px 1px 2px rgb(84, 204, 84);
+    border: none;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 70px;
+    width: 140px;
+    font-size: 20px;
+    
+    color: rgb(0, 0, 0);
+    margin:20px;
+}
+
+.Button:hover{
+    background-color: rgb(93, 212, 93);
+}
+
+.Button:active{
+    background-color: rgb(102, 207, 102);
+}
+
+.Ball{
+    width: 340px;
+    height: 340px;
+    position: fixed;
+    bottom: -50px;
+    left: 0;
+    background-color: rgb(238, 238, 238);
+    border-radius: 0 100% 0 0;
+}
+
+@media only screen and (min-width: 1000px) {
+    .Container{
+      margin-top:150px;
+    }
+}
