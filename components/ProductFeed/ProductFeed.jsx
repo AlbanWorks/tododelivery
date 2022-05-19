@@ -17,6 +17,7 @@ const ProductFeed = ({category}) => {
             const ProductList = await getCollection(category)
             setProducts(ProductList)  
             SetProductsFetched(true)
+            console.log(ProductList);
         }
         fetchData()
     }, [])

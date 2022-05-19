@@ -23,7 +23,6 @@ const checkProduct = (product) =>{
     const errBrand = checkBrand(product.brand)
     const errPrice = checkPrice(product.price)
     const errPicFile = checkPicFile(product.picFile)
-    if(errPicFile)console.log("error en tu foto ")
     if(errtitle || errBrand || errPrice || errPicFile) return true
     else return false
 }
@@ -40,7 +39,7 @@ const checkTitle = (title)=>{
 const checkBrand = (brand)=>{
     if(brand==="") return true 
     else return false
-}
+} 
 
 const checkPrice = (price)=>{
     if(price==="") return true
@@ -48,7 +47,6 @@ const checkPrice = (price)=>{
 }
 const checkPicFile= (picFile)=>{
     //en el caso de un producto existente picFile = undefined, pues no tiene ese field. en ese caso tampoco hay errores
-    if(picFile === "")console.log("errata detectata FOTO ", picFile)
     if(picFile === "")return true
     else return false
     

@@ -1,4 +1,4 @@
-import {React, useState,Fragment} from 'react'
+import {React, useState} from 'react'
 import {getCollection, setProduct, addProduct, deleteProduct} from "../../firebase/FirestoreMethods"
 import classes from './AdminFeed.module.css'
 import { checkInput, checkList, SaveChanges, handleErrorStyles} from './adminMethods'
@@ -71,17 +71,18 @@ const AdminFeed = () => {
     	SetListState("saving")
     	for (let product of productList) {
 			if(product.delete){
-				const deleteProd = await  deleteProduct(Category, product.ID)
+				const deleteProd = await  deleteProduct(Category, product.ID, product.picRoute)
         		if(deleteProd.err){SetListState("save error");return}
 			}
       		else if(product.ID){//producto ya existente, actualizar
         		const updateProduct = await setProduct(product,Category, product.ID)
         		if(updateProduct.err){SetListState("save error");return}
       		}
-      		else{//producto nuevo, remover el id provisional (local) y guardar
+      		else{ 
 				//inmutabilidad, crea una copia del producto, error si remuevo localid del original,keys 
 				const product_toSend = JSON.parse(JSON.stringify(product)) //copia profunda, pero metodo assingn() puede andar 
-				delete product_toSend.localid
+				product_toSend.picFile = product.picFile //picFile se corrompe con JSON y con assign, la reasigno aqui y ya...
+				delete product_toSend.localid //remover el id provisional (local) y enviar a firestore
         		const newProduct = await addProduct(product_toSend,Category)
         		if(newProduct.err){SetListState("save error");return}
       		}

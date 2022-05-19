@@ -1,6 +1,6 @@
 import {db, storage} from './firebaseConfig'
 import { collection, getDocs, doc, getDoc, setDoc, updateDoc, addDoc, deleteDoc } from "firebase/firestore"
-import {ref, uploadBytesResumable, getDownloadURL } from "@firebase/storage"
+import {ref, uploadBytesResumable, getDownloadURL, deleteObject } from "@firebase/storage"
 
 
 //haganme la atencion de borrar los clg si no les sirven
@@ -30,7 +30,6 @@ const setProduct = async (product, category, ID) => {
 }
 
 const addProduct = async (product, category) => {
-    console.log("se activa ADD Product")
     // guarda los cambios de un producto nuevo, añade una ID automatica en firebase
     const productWithPicUrl = await handlePicUpload(product)
     try {
@@ -54,7 +53,10 @@ const handlePicUpload= async (product)=>{
     const picUrl = await getImageURL(product.picFile)
     //si paso algo raro le pongo el link a una imágen por defecto, (manejar estos errores luego)
     if(uploadPic.err || picUrl.err) product.picUrl = "https://firebasestorage.googleapis.com/v0/b/delivery-ecomerce-template.appspot.com/o/defaultProduct.jpg?alt=media&token=d2aa4b6f-3ff0-497c-b4de-30d3194d2319"
-    else product.picUrl = picUrl
+    else{
+        product.picUrl = picUrl
+        product.picRoute = `/${product.picFile.name}` //importante para borrar la foto
+    } 
     delete product.picFile
     return product
 }
@@ -82,6 +84,18 @@ const getImageURL = async (file)=>{
     }
 }
 
+const deleteImage = async (picRoute)=>{
+    if(picRoute === "/defaultProduct.jpg") return{deleted:"no foto"}
+    try {
+        const storageRef = ref(storage, picRoute)
+        const deletedImage = await deleteObject(storageRef)
+        return{deleted:"is dead"}
+    } catch (err) {
+        console.log("ERROR EN EL BORRE DE LA IMAGEN", err)
+        return{err}
+    }
+}
+
 const getCollection = async (Collection) => {
     const querySnapshot = await getDocs(collection( db, Collection ));
     let ArrayOfDocs = []
@@ -98,10 +112,11 @@ const getCollection = async (Collection) => {
     return ArrayOfDocs
 }
 
-const deleteProduct = async (category,ID) => {
+const deleteProduct = async (category,ID,picRoute) => {
+    const deleteImg = deleteImage(picRoute)
     try {
         await deleteDoc(doc(db, category, ID));
-        return{saved:"product deleted"}
+        return{deleted:"product deleted"}
     } 
     catch (err) {
         console.log("pal pingo a salido che ", err)
