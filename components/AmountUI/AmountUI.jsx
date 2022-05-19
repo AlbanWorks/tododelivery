@@ -1,6 +1,5 @@
-import React,{useState,useContext} from 'react'
+import React from 'react'
 import classes from './AmountUI.module.css'
-import { DataContext } from '../../provider'
 
 const AmountUI = (props) => {
 /*este es el primer componente de este estilo que hago, ya que no tiene onchange, le pasé por

@@ -11,6 +11,7 @@ const DataProvider = ({children}) => {
 const[Products, setProducts] = useState([])
 const[CartProducts, setCartProducts] = useState([])
 
+
     return (
         <DataContext.Provider value={{
             Products,

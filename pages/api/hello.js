@@ -1,9 +1,6 @@
-import Firestore from './backend/FirebaseAdminConfig'
-import EnviarTelegram from '../../TelegramBot'
+import Firestore from '../../firebase/FirebaseAdminConfig'
+import EnviarTelegram from '../../Telegram/SendTelegramMessage'
 
-
-
-console.log("asies")
 
 const LaListaEsValida = (lista) =>{
   if(lista !== undefined && 
@@ -97,8 +94,8 @@ const handler = async (req, res) => {
       if(Ticket){
         const mensaje = ConstruirMensaje(Ticket)
         const Telegram = await EnviarTelegram(mensaje)
-        console.log("este es el telegram crudo"+ Telegram)
-        if(Telegram.enviado){
+        console.log(Telegram)
+        if(Telegram.sended){
           res.status(200).json(Ticket)
         }
         else {

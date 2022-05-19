@@ -9,19 +9,20 @@
 .InfoContainer{
     width: 100%;
     height: 100%;
+    padding: 0 15px 0 15px;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
 }
 .Info{
     margin:0;
-    margin-left: 15px;
+    padding: 10px 0 10px 0;
     font-size: 18px;
 }
 .InfoTitle{
     margin:40px 15px 10px 15px;
     color: rgb(80, 80, 80);
-    font-size: 18px;
+    font-size: 20px;
     text-align: center;
 }
 
@@ -47,7 +48,8 @@
 }
 
 .TicketContainer{
-    margin-top:90px ;
+    margin-top:90px  ;
+    padding: 0 15px 0 15px;
     width: 100%;
     height: 100%;
     display: flex;
@@ -87,9 +89,10 @@
     justify-content: center;
 }
 .EnCamino{
-    color: rgb(134, 134, 134);
+    color: rgb(78, 78, 78);
     margin: 0 0 15px 0;
-    font-size: 23px;
+    font-size: 17px;
+    font-weight: 600;
     text-align: center;
 }
 .Moto{

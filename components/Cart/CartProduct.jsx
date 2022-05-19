@@ -1,7 +1,6 @@
 import React,{useContext} from 'react'
 import { DataContext } from '../../provider'
 import classes from'./CartProduct.module.css'
-import AmountUI from '../AmountUI/AmountUI'
 
 const CartProduct = ({ thisProdIndex, product}) => {
     const {CartProducts} = useContext(DataContext)

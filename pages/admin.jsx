@@ -1,17 +1,16 @@
-import React from 'react'
-import FormularioPrueba from '../components/FormularioPrueba'
-//import ProductsFeed from "../components/ProductsFeed"
-import { useRouter } from 'next/router'
+import Head from 'next/head'
+import classes from './styles/pageStyles.module.css'
+import AdminFeed from "../components/Admin/AdminFeed"
 
-const Admin = () => {
-    const router = useRouter()
-    return (
-        <div>
-           <h1>ESTE ES AFMIN</h1>
-           <button onClick={() => router.push('/')}> vovler</button>
-<FormularioPrueba/>
-        </div>
-    )
+
+export default function Admin() {
+
+  return (
+  <div className={classes.PageContainer}>
+  <Head>
+  <title>Todo Delivery-Admin</title>
+  </Head>
+  <AdminFeed/>
+  </div>
+  )
 }
-
-export default Admin

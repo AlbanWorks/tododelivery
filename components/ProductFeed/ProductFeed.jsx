@@ -1,7 +1,7 @@
 import {React, useState, useEffect,useContext} from 'react'
 import classes from './ProductFeed.module.css'
 import { DataContext } from '../../provider'
-import {getCollection} from "../FirestoreMethods"
+import {getCollection} from "../../firebase/FirestoreMethods"
 import Product from './Product';
 import Spinner from '../Spinner/Spinner'
 
@@ -13,8 +13,8 @@ const ProductFeed = ({category}) => {
 
     useEffect(() => {
         const fetchData = async () =>{
+            //trae la coleccion y le añade el campo ID a cada producto
             const ProductList = await getCollection(category)
-            console.log("laprodulist: "+ProductList)
             setProducts(ProductList)  
             SetProductsFetched(true)
         }
@@ -35,17 +35,5 @@ const ProductFeed = ({category}) => {
         </div>
     )
 }
-//<Mensaje key={index} autor={item.Nickname} mensaje={item.mensaje}/>
+
 export default ProductFeed
-
-/*
-key={index} 
-title={item["title"]} 
-price={item["price"]}  
-stock={item["stock"]} 
-picUrl={item["picUrl"]}
-id={item["ID"]}
-
-
-
-*/
