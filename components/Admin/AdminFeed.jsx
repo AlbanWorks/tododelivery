@@ -6,7 +6,7 @@ import Spinner from '../Spinner/Spinner'
 import AddPercentageInput from './AddPercentageInput/AddPercentageInput'
 import ListStateListener from './ListStateListener/ListStateListener'
 
-const adminFeed = () => {
+const AdminFeed = () => {
 
   	const [ProductList, SetProductList] = useState([])
   	const [ListState, SetListState] = useState("idle")
@@ -164,7 +164,7 @@ const adminFeed = () => {
   	)
 }
 
-export default adminFeed
+export default AdminFeed
 
 /*
 SOBRE ESTE COMPONENTE GIGANTE
