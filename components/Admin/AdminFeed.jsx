@@ -124,7 +124,7 @@ const AdminFeed = () => {
 						onChange={(e)=>hanldeChanges(e,index)}
 					/>
 					<label htmlFor={`${product.ID||product.id}`} className={product.ID?(classes.picLabel_old):(classes.picLabel_new)}>
-						<i class="fa-solid fa-image"></i>
+						<i className={"fa-solid fa-image"}></i>
 						<input 
 							className={classes.picFileInput} 
 							id={`${product.ID||product.id}`} 
@@ -145,7 +145,7 @@ const AdminFeed = () => {
 						</div>)
 				  	:(
 						<button onClick={()=> RemoveField(index)} className={classes.DeleteLocalButton} >
-							<i class="fa-solid fa-circle-xmark"></i>
+							<i className={"fa-solid fa-circle-xmark"}></i>
 						</button>)
 				  	}
 					{product.delete ? (<div className={classes.Tacha}/>):(<></>)}  
