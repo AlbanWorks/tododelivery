@@ -3,8 +3,11 @@ import {getCollection, setProduct, addProduct, deleteProduct} from "../../fireba
 import classes from './AdminFeed.module.css'
 import { checkInput, checkList, SaveChanges, handleErrorStyles} from './adminMethods'
 import Spinner from '../Spinner/Spinner'
+import DeleteButton from './DeleteButton/DeleteButton'
+import StockSlider from './StockSlider/StockSlider'
 import AddPercentageInput from './AddPercentageInput/AddPercentageInput'
 import ListStateListener from './ListStateListener/ListStateListener'
+
 
 const AdminFeed = () => {
 
@@ -43,10 +46,16 @@ const AdminFeed = () => {
 
 	// da o quita una propiedad,delete, la cual es leida antes de enviarse la productList
 	//en caso de tener la propiedad delete, se da la orden de eliminar el producto de firebase
-	const handleDeleteCheckbox = (e, index) => {
+	const handleDeleteState = (deleteState, index) => {
 		const newProductList = [...ProductList]
-		if(e.target.checked) newProductList[index].delete = true; 
+		if(deleteState === true) newProductList[index].delete = true; 
 		else delete newProductList[index].delete
+		SetProductList(newProductList)
+	}
+
+	const handleStockState = (stockState, index) => {
+		const newProductList = [...ProductList]
+		 newProductList[index].stock = stockState; 
 		SetProductList(newProductList)
 	}
 
@@ -135,14 +144,13 @@ const AdminFeed = () => {
 							onChange={(e)=>hanldeChanges(e,index)}
 						/> 
 					</label>
+					<div className={classes.StockSliderContainer} >
+						<StockSlider stock={product.ID?(product.stock):(true)} alCambiar={(stockState)=>handleStockState(stockState,index)}/>
+					</div>
 				  	{
 				  	product.ID?(
-						<div className={classes.checkboxContainer}>
-							<input 
-							    className={classes.deleteCheckbox}
-								type="checkbox" 
-								onChange={(e)=>handleDeleteCheckbox(e, index)}
-							/> 
+						<div className={classes.DeleteContainer}>
+						 <DeleteButton alCambiar = {(deleteState)=>handleDeleteState(deleteState, index)}/>
 						</div>)
 				  	:(
 						<button onClick={()=> RemoveField(index)} className={classes.DeleteLocalButton} >
@@ -181,5 +189,19 @@ estos errores es listar los productos con errores sin interrumpir la subida del 
 que sufrieron un error al ser enviados para que puedan ser borrados o modificados luego.
 
 soy consciente de lo improvisado de este componente, me gustaría refactorizarlo luego.
+
+
+				<label htmlFor={`${product.ID||product.id}`} className={product.ID?(classes.picLabel_old):(classes.picLabel_new)}>
+						<i className={"fa-solid fa-image"}></i>
+						<input 
+							className={classes.picFileInput} 
+							id={`${product.ID||product.id}`} 
+							type="file"  
+							name="picFile" 
+							accept="image/*"  
+							onChange={(e)=>hanldeChanges(e,index)}
+						/> 
+					</label>
+
 
 */

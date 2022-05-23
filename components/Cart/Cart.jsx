@@ -1,4 +1,4 @@
-import React,{useState, useEffect,useContext} from 'react'
+import React,{useState, useEffect, useRef, useContext} from 'react'
 import { useRouter } from 'next/router'
 import classes from './Cart.module.css'
 import { DataContext } from '../../provider'
@@ -13,7 +13,7 @@ const Cart = () => {
     const [active, setActive] = useState(false) 
     const [EmptyCartAlert, setEmptyCartAlert] = useState(true)  
     const router = useRouter()
-    
+    const containerRef = useRef()
 
 useEffect(() => {
     CalcularTotal()
@@ -32,11 +32,14 @@ const IniciarCompra= () =>{
     if(CartProducts.length > 0) router.push('/pasarela')
     else setEmptyCartAlert(true)
 }
+const closeCart = (e) => {
+    if(e.target === containerRef.current) setActive(false)
+}
 
     return (
         <div>{
          active ? (
-            <div className={classes.CartContainer} >
+            <div className={classes.CartContainer} ref={containerRef} onClick={(e)=> closeCart(e)} >
                 <div className={classes.Cart} >
                     <h2 className={classes.Titulo} >Carrito de Compras</h2>
                    <div className={classes.ProductBill} >
@@ -57,7 +60,7 @@ const IniciarCompra= () =>{
                             Iniciar Compra
                         </button> 
                         <button onClick={()=>setActive(false)} className={classes.ButtonVolver} >
-                            Volver
+                            Cerrar
                         </button>
                     </div>
                 </div> 

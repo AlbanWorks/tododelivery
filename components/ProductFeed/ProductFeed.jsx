@@ -13,11 +13,10 @@ const ProductFeed = ({category}) => {
 
     useEffect(() => {
         const fetchData = async () =>{
-            //trae la coleccion y le añade el campo ID a cada producto
-            const ProductList = await getCollection(category)
-            setProducts(ProductList)  
+            const rawProductList = await getCollection(category)
+            const onStockProductList = rawProductList.filter(product => product.stock === true)
+            setProducts(onStockProductList)  
             SetProductsFetched(true)
-            console.log(ProductList);
         }
         fetchData()
     }, [])

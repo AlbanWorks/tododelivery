@@ -54,7 +54,7 @@ const isValidListFormat = (lista) =>{
     let ProductosValidados = []
     for(let productoLista of list){
      const productoFB = await getProduct(productoLista.category, productoLista.ID)
-      if(productoFB){
+      if(productoFB && productoFB.stock === true){
          ProductosValidados.push({
            title: productoFB.title, 
            amount: productoLista.amount, 
@@ -126,7 +126,7 @@ const handler = async (req, res) => {
 
     const Firebase_Validated_List = await FirebaseValidation(Parsed_Request.lista)
     if(! Firebase_Validated_List){
-      Response(res, 400, "uno o mas productos no estan disponibles en Firebase")
+      Response(res, 400, "Uno o mas productos ya no están disponibles")
       return
     }
     handleNumOrder()

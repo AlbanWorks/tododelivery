@@ -14,7 +14,10 @@ return (
                 Danos algo de información antes de hacer tu pedido
             </h2>
             <p className={classes.Info}>
-                Si olvidaste algo podes <Link href="/">volver</Link> y revisar tu carrito <b>antes de comprar.</b> 
+                Si olvidaste algo podés <Link href="/">volver</Link> y revisar tu carrito. 
+            </p>
+            <p className={classes.Info}>
+                Envío $100 
             </p>
             <p className={classes.Info}>
                 <b>🟢 Se abona al llegar el pedido</b>
@@ -24,7 +27,8 @@ return (
      : OrderState.ErrorResponse ? (
         <div className={classes.ErrorContainer} >
             <p className={classes.ErrorMessage}>
-               Algo salió mal, su pedido no se realizó,podes <Link href="/">volver</Link> e intentarlo de nuevo
+               Algo salió mal, su pedido no se realizó,podes <Link href="/">volver</Link> e intentarlo de nuevo <br /> 
+               {info.err}
             </p>
             <i className={"fas fa-cogs"}></i>
         </div>    

@@ -1,25 +1,17 @@
-/*<label htmlFor={`${product.ID}`} className={classes.picFileLabel_oldProduct}>
-	<i class="fa-solid fa-image"></i>
-	<input 
-		className={classes.picFileInput} 
-        id={`${product.ID?(product.ID):(product.localid)}`} 
-		type="file"  
-	    name="picFile" 
-		accept="image/*"  
-		onChange={(e)=>hanldeChanges(e,index)}
-	/> 
-</label>*/
+import{React, useState, useEffect}from 'react'
+import classes from './DeleteButton.module.css'
 
-import React from 'react'
+const DeleteButton = ({alCambiar}) => {
+	const [deleteState, setDelete] = useState(false)
 
-const pija = {ud:"chaterusde"}
-const DeleteButton = () => {
+	useEffect(() => {
+		alCambiar(deleteState)
+	}, [deleteState])
+
   return (
-<div>
-
-<div>{`${pija.ID||pija.ud}`}</div>
-
-</div>
+	<div className={classes.Button} onClick={()=>(setDelete(!deleteState))}>
+		<i className={"fa-solid fa-circle-xmark"}></i>
+	</div>
   )
 }
 

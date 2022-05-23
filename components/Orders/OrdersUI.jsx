@@ -66,10 +66,10 @@ const GatewayUI = () => {
                             onChange={(e)=>{setDirection(e.target.value)}} 
                             className={classes.InputText}
                         />
-                        <p className={classes.Title} >Indicaciónes, ayudanos a encontrarte</p>
+                        <p className={classes.Title} >Indicaciónes, ayudanos a encontrarte (opc)</p>
                         <input 
                             type="text" 
-                            placeholder='ej: Descripción de la casa, tu nombre, etc.' 
+                            placeholder='Nombre, dirección, descripcion de tu casa, etc.' 
                             onChange={(e)=>{setIndications(e.target.value)}}
                             className={classes.InputText}
                         />
@@ -95,10 +95,15 @@ const GatewayUI = () => {
                             className={classes.ButtonVolver}
                         > Volver </button>
                     </div>
-                </>
-
-                ):( //orden respondida por el server
-
+                </>)
+                :OrderState.ErrorResponse ?( // ERROR EN LA RESPUESTA 
+                <>
+                     <button 
+                            onClick={()=>{router.push('/')}} 
+                            className={classes.ButtonVolver}
+                    > Volver </button>
+                </>)
+                :(//RESPUESTA EXITOSA
                 <>
                     <div className={classes.Botonera} >
                         <button 
@@ -107,7 +112,9 @@ const GatewayUI = () => {
                         > Ir a Whatsapp </button>
                     </div>
 
-                </>)}
+                </>
+                )
+                }
            </div>
         </div>
     )
