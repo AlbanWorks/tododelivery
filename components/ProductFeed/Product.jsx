@@ -29,8 +29,12 @@ const Product = ({LocalProduct}) => {
                 CartProducts[IndexProd]["amount"] += amount 
                 setCartProducts([...CartProducts])
             }  
-            setButtonText("Agregar al Carrito")
+            setButtonText("¡Listo!")
         }, 700);
+
+        setTimeout(() => {
+            setButtonText("Agregar al Carrito")
+        }, 1600);
     }
 
     return (

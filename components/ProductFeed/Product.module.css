@@ -37,6 +37,7 @@
     background-color: rgb(127, 241, 127);
     padding: 5px 10px 5px 10px;
     border-radius: 3px;
+    width: 150px;
 }
 .Button:active{
     color: rgb(0, 0, 0);
