@@ -7,7 +7,7 @@ const pasarela = () => {
     return (
         <div className={classes.PageContainer} >
              <Head>
-                <title>Todo Delivery-pedidos</title>
+                <title>TuDelivery-pedidos</title>
             </Head>
             <OrdersUI/>
         </div>

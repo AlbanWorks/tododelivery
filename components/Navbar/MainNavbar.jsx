@@ -5,7 +5,7 @@ const MainNavbar = () => {
     return (
         <div className={classes.MainNavbarContainer}>
             <nav className={classes.MainNavbar}>
-                <h1 className={classes.MainNavbarTitle} >Todo Delivery</h1>
+                <h1 className={classes.MainNavbarTitle} >TuDelivery</h1>
             </nav>
             <div className={classes.Wave} >
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">

@@ -1,19 +1,24 @@
-.Nav{
+.Header{
     background-color: rgb(54, 98, 219);
+    background-image: linear-gradient(rgb(54, 98, 219), rgb(48, 89, 202));
     box-shadow: 0 0 10px rgb(192, 192, 192);
     height: 50px;
     width: 100%;
     position:fixed;
     display: flex;
     align-items: center;
-
+    justify-content: center;
+    z-index: 10;
 }
 .Title{
     margin:0;
     margin-left: 10px;
-    font-size: 25px;
+    font-size: 30px;
+    font-family: sans-serif;
     color: white;
     text-shadow: 0 0 10px rgb(32, 16, 175);
+    position: fixed;
+    left: 5px;
 }
 
 .MainNavbarContainer{
@@ -25,16 +30,60 @@
     width: 100%;
     display: flex;
     align-items: flex-end;
-    justify-content: center
+    justify-content: center;
 }
 .MainNavbarTitle{
     position: absolute;
     margin:0;
     margin-left: 10px;
-    font-size: 25px;
+    font-size: 30px;
     color: white;
     text-shadow: 0 0 10px rgb(32, 16, 175);
     z-index: 500;
+}
+.CategoryButton{
+    outline: none;
+    border: none;
+    padding: 3px 6px 3px 6px;
+    border-radius: 3px;
+    font-size: 17px;
+    font-family: sans-serif;
+    color: rgb(73, 73, 73);
+    background-color: rgb(127, 241, 127);
+    box-shadow: 0 2px 3px rgba(67, 50, 224, 0.685);
+    
+}
+.Nav{
+    width: 100%;
+    padding:60px 0 20px 0;
+    background-color: rgb(245, 245, 245);
+    position: fixed;
+    z-index: 1;
+    transition: all 0.5s;
+    margin-top: -200px;
+    box-shadow: 0 0 10px rgb(167, 167, 167);
+}
+.Ul{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+.Li{
+    width: 100%;
+    height: 50px;
+    list-style: none;
+    border-bottom: 1px solid rgb(177, 177, 177);
+    display: flex;
+    align-items: center;
+    padding-left: 15px;
+    box-sizing: border-box;
+}
+.Li a{
+    text-decoration: none;
+    font-family: sans-serif;
+    color:rgb(78, 78, 78) ;
+    text-shadow: 0 2px 2px rgb(218, 218, 218);
+    font-size: 20px;
 }
 
 @media only screen and (min-width: 800px) {

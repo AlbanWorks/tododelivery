@@ -27,8 +27,8 @@ return (
      : OrderState.ErrorResponse ? (
         <div className={classes.ErrorContainer} >
             <p className={classes.ErrorMessage}>
-               Algo salió mal, su pedido no se realizó,podes <Link href="/">volver</Link> e intentarlo de nuevo <br /> 
-               {info.err}
+               Algo salió mal y tu pedido no se realizó, podés <Link href="/">volver</Link> e intentarlo de nuevo.<br /><br /> 
+              Error: <b>{info.err}</b>
             </p>
             <i className={"fas fa-cogs"}></i>
         </div>    

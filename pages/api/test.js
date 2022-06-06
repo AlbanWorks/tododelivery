@@ -9,7 +9,17 @@ NotificarReinicioTelegram("reinicio del servidor")
 
 const handleNumOrder = async ()=>{
   const newDate = new Date()
-  const oldDate = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate(),23,59,59)
+  const hour=23, minute=59, second= 59;
+  const oldDate = new Date
+  (
+    currentDate.getFullYear(), 
+    currentDate.getMonth(), 
+    currentDate.getDate(),
+    hour,
+    minute,
+    second
+  )
+  //aqui va a haber un desface de una hora, considero usar moment js para solucionar estos entresijos pero por ahora no me molestan
   if(newDate > oldDate){
     numOrder = 0
     currentDate = newDate
@@ -17,7 +27,24 @@ const handleNumOrder = async ()=>{
   }
   numOrder++
 }
+//---------isOpen?-------------------------------------------------------------
 
+//esto está alojado en Washinton dc (gmt -4) y nosotros usamos la hora de bs as (gmt -3) allá es una hora mas temprano
+const checkDate = ()=>{
+  const currentDate = ToArgentinaTime(new Date())
+  const horarioDeApertura = 10
+  //el horario de cierre es a las 12, no hace falta validar pues vuelve a 0
+  if(currentDate.getHours()>= horarioDeApertura){
+    return true
+  }
+  else return false
+}
+const ToArgentinaTime = (date)=>{
+  const numberOfMlSeconds = date.getTime();
+  const addMlSeconds = 60 * 60000; //sumo una hora al tiempo de washinton dc
+  const newDate = new Date(numberOfMlSeconds + addMlSeconds);
+  return newDate
+}
 //-------------------------JSON validator---------------------------------------------
 const ParseRequest = (request)=> {
 try { 
@@ -112,7 +139,11 @@ const isValidListFormat = (lista) =>{
 
 const handler = async (req, res) => {
   if(req.method ==='POST'){
-
+    const IsOpen = checkDate()
+    if(!IsOpen){
+      Response(res, 300, "el local está cerrado")
+      return
+    }
     const Parsed_Request = ParseRequest(req.body)
     if(!Parsed_Request){
       Response(res, 500, "error de formato JSON")
