@@ -1,6 +1,5 @@
 .Header{
     background-color: rgb(54, 98, 219);
-    background-image: linear-gradient(rgb(54, 98, 219), rgb(48, 89, 202));
     box-shadow: 0 0 10px rgb(192, 192, 192);
     height: 50px;
     width: 100%;
@@ -60,7 +59,7 @@
     position: fixed;
     z-index: 1;
     transition: all 0.5s;
-    margin-top: -200px;
+    margin-top: -150%;
     box-shadow: 0 0 10px rgb(167, 167, 167);
 }
 .Ul{

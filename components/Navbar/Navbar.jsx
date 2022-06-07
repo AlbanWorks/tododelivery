@@ -1,4 +1,5 @@
 import {React, useState, useEffect, useRef, Fragment} from 'react'
+import Link from 'next/link'
 import classes from './Navbars.module.css'
 
 const Navbar = () => {
@@ -14,7 +15,7 @@ useEffect(() => {
         setButtonText("Cerrar")
     }
     else{
-        navRef.current.style.marginTop= "-100%"
+        navRef.current.style.marginTop= "-150%"
         setButtonText("Categorías")
     }
 }, [ActiveMenu])
@@ -28,11 +29,15 @@ useEffect(() => {
         </header>
         <nav className={classes.Nav} ref={navRef}>
             <ul className={classes.Ul}>
-                <li className={classes.Li}><a href="">Golosinas</a></li>
-                <li className={classes.Li}><a href="">Gasoleo</a></li>
-                <li className={classes.Li}><a href="">Golosinas</a></li>
-                <li className={classes.Li}><a href="">Golosinas</a></li>
-                
+                <li className={classes.Li}><Link href="/golosinas"><a>Golosinas</a></Link></li>
+                <li className={classes.Li}><Link href="/lacteos"><a>Lácteos</a></Link></li>
+                <li className={classes.Li}><Link href="/panaderiaymerienda"><a>Panadería y Merienda</a></Link></li>
+                <li className={classes.Li}><Link href="/heladosypostres"><a>Helados y Postres</a></Link></li>
+                <li className={classes.Li}><Link href="/mercaderiageneral"><a>Mercadería General</a></Link></li>
+                <li className={classes.Li}><Link href="/cigarrillos"><a>Cigarrillos</a></Link></li>
+                <li className={classes.Li}><Link href="/bebidasalcoholicas"><a>Bebidas Alcohólicas</a></Link></li>
+                <li className={classes.Li}><Link href="/jugosygaseosas"><a>Jugos y Gaseosas</a></Link></li>
+                <li className={classes.Li}><Link href="/snackssalados"><a>Snacks Salados</a></Link></li>
             </ul>
         </nav>
         </Fragment>
