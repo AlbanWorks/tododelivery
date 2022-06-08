@@ -69,7 +69,7 @@ const GatewayUI = () => {
                         <p className={classes.Title} >Indicaciónes, ayudanos a encontrarte (opc)</p>
                         <input 
                             type="text" 
-                            placeholder='Nombre, descripción de tu casa, etc.' 
+                            placeholder='Tu nombre, la descripción de tu casa, etc.' 
                             onChange={(e)=>{setIndications(e.target.value)}}
                             className={classes.InputText}
                         />

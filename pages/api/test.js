@@ -139,7 +139,10 @@ const isValidListFormat = (lista) =>{
 
 const handler = async (req, res) => {
   if(req.method ==='POST'){
-    const IsOpen = checkDate()
+    const hour = new Date().getHours()
+    Response(res, 300, hour)
+    return
+   /* const IsOpen = checkDate()
     if(!IsOpen){
       Response(res, 300, "el local está cerrado")
       return
@@ -170,7 +173,7 @@ const handler = async (req, res) => {
       return
     }
     Response(res, 200, Ticket)
-
+*/
     }
   }
 
