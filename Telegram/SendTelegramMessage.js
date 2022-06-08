@@ -24,7 +24,7 @@ const EnviarTelegram = async (ticket) =>{
 
 
 const ConstructMessage = (Ticket) =>{
-  let msj = `🔴 PEDIDO N° ${Ticket.numOrder}:\n\n`
+  let msj = `🔴 PEDIDO dia ${Ticket.ID_Date}:\n\n`
   Ticket.validatedList.forEach(p => {
     msj = msj.concat(`${p.amount} ${p.title}\n`)
   });

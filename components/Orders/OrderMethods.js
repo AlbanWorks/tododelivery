@@ -34,8 +34,8 @@ const SendOrder = async (order)=>{
 }
 
 const ConstructMessage = (res)=>{
-    let msj = `🟢 ¡Hola! he realizado un pedido:\n\n N° ${res.numOrder}\n\n`
-    msj = msj.concat(`\n Para: ${res.infoAdicional.Direction}, ${res.infoAdicional.Indications}`)
+    let msj = `🟢 ¡Hola! he realizado un pedido\n\n${res.ID_Date}\n\n`
+    msj = msj.concat(`Para: ${res.infoAdicional.Direction}, ${res.infoAdicional.Indications}\n tudelivery.com`)
   //debo pasar el url a utf-8 porque a veces hay acentos y cosas
   const mensajeUTF8= encodeURIComponent(msj)
   return mensajeUTF8

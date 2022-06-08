@@ -13,20 +13,17 @@ const CategoryMenu = () => {
             <div className={classes.Menu} >
                 <h2 className={classes.MenuTitle}> Categorías </h2>
                 <button className={classes.Button}
+                onClick={()=>goTo('/golosinas')} > 
+                    Golosinas y Galletas
+                </button>
+                <button className={classes.Button}>Panadería</button>
+                <button className={classes.Button}>Jugos y Gaseosas</button>
+                <button className={classes.Button}
                 onClick={()=>goTo('/frutas')} > 
                     Helados y Postres 
                 </button>
-                <button className={classes.Button}
-                onClick={()=>goTo('/golosinas')} > 
-                    Golosinas 
-                </button>
-                <button className={classes.Button}>Panadería y Merienda</button>
-                <button className={classes.Button}>Lácteos</button>
-                <button className={classes.Button}>Snacks Salados</button>
-                <button className={classes.Button}>Cigarrillos</button>
-                <button className={classes.Button}>Bebidas Alcohólicas</button>
-                <button className={classes.Button}>Jugos y Gaseosas</button>
                 <button className={classes.Button}>Mercadería General</button>
+                <button className={classes.Button}>Bebidas Alcohólicas</button>
             </div>
             <div className={classes.Ball}/>
         </div>

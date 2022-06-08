@@ -7,9 +7,8 @@
 }
 .Menu{
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     align-items: center;
-    justify-content: space-evenly;
     width: 100%;
     max-width: 800px;
     z-index: 1000;
@@ -31,12 +30,11 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 70px;
-    width: 140px;
+    height: 50px;
+    width: 95%;
     font-size: 20px;
-    
     color: rgb(0, 0, 0);
-    margin:20px;
+    margin:10px;
 }
 
 .Button:hover{
@@ -60,5 +58,19 @@
 @media only screen and (min-width: 1000px) {
     .Container{
       margin-top:150px;
+    }
+    .Menu{
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-evenly;
+        width: 100%;
+        max-width: 800px;
+        z-index: 1000;
+    }
+    .Button{
+        height: 70px;
+        width: 140px;
+        margin:20px;
     }
 }

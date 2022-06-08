@@ -27,6 +27,16 @@ const handleNumOrder = async ()=>{
   }
   numOrder++
 }
+//----------------------------------------------------------------------------
+const generateDate = () => {
+  const argentinaUTCzone = -3 
+  const UTCmiliseconds = new Date().getTime();
+  const UTCmenos3_miliseconds = UTCmiliseconds + 3600000 * argentinaUTCzone
+  const ArgentinaDATE = new Date(UTCmenos3_miliseconds)
+  console.log(ArgentinaDATE.getUTCHours())
+  return `${ArgentinaDATE.getUTCDate()} - ${ArgentinaDATE.getUTCHours()}:${ArgentinaDATE.getUTCMinutes()}:${ArgentinaDATE.getUTCSeconds()}`
+}
+
 //---------isOpen?-------------------------------------------------------------
 
 //esto está alojado en Washinton dc (gmt -4) y nosotros usamos la hora de bs as (gmt -3) allá es una hora mas temprano
@@ -110,10 +120,10 @@ const isValidListFormat = (lista) =>{
 
 //------------------------Ticket Creator----------------------------------------------------------
 
-  const createTicket = (validatedList, infoAdicional,numOrder)=>{
+  const createTicket = (validatedList, infoAdicional, ID_Date)=>{
     validatedList.push({ title: 'Envío', amount: 1, price: 100 }) //hacer bien el envio, con db y tal
     const precioTotal = CalcularTotal(validatedList)
-    const Ticket = {validatedList, infoAdicional, precioTotal, numOrder} //ESCRIBIR BIEN
+    const Ticket = {validatedList, infoAdicional, precioTotal, ID_Date} //ESCRIBIR BIEN
     return Ticket
   }
   
@@ -139,10 +149,7 @@ const isValidListFormat = (lista) =>{
 
 const handler = async (req, res) => {
   if(req.method ==='POST'){
-    const hour = new Date().getUTCHours()-3
-    Response(res, 300, hour)
-    return
-   /* const IsOpen = checkDate()
+    const IsOpen = checkDate()
     if(!IsOpen){
       Response(res, 300, "el local está cerrado")
       return
@@ -163,19 +170,44 @@ const handler = async (req, res) => {
       Response(res, 400, "Uno o mas productos ya no están disponibles")
       return
     }
-    handleNumOrder()
-    const Ticket = createTicket(Firebase_Validated_List, Parsed_Request.infoAdicional, numOrder)
+
+    const ID_Date = generateDate()
+
+    const Ticket = createTicket(Firebase_Validated_List, Parsed_Request.infoAdicional, ID_Date)
     
     const TelegramNotification = await EnviarTelegram(Ticket)
     if( ! TelegramNotification.sended){
       Response(res, 500, "el mensaje a Telegram no fue enviado")
-      if(numOrder > 1) numOrder--
       return
     }
     Response(res, 200, Ticket)
-*/
+
     }
   }
 
 
   export default handler
+
+
+  /*
+  const generateDate = () => {
+  const argentinaUTCzone = -3 
+  const UTCmiliseconds = new Date().getTime();
+  const UTCmenos3_miliseconds = UTCmiliseconds + 3600000 * argentinaUTCzone
+  const ArgentinaDATE = new Date(UTCmenos3_miliseconds)
+  return `${ArgentinaDATE.getDate()} / ${ArgentinaDATE.getHours()}/ ${ArgentinaDATE.getHours()}`
+}
+//---------isOpen?-------------------------------------------------------------
+
+//obtengo la hora UTC universal independiente del lugar donde se aloje el server y le resto 3 ya que
+// la hora de argentina es UTC-3
+const checkHour = ()=>{
+  const ArgHours = new Date().getUTCHours()-3
+  const horarioDeApertura = 10
+  //el horario de cierre es a las 12, no hace falta validar pues vuelve a 0
+  if(ArgHours >= horarioDeApertura){
+    return true
+  }
+  else return false
+}
+  */
