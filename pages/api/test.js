@@ -139,7 +139,7 @@ const isValidListFormat = (lista) =>{
 
 const handler = async (req, res) => {
   if(req.method ==='POST'){
-    const hour = new Date().getHours()
+    const hour = new Date().getUTCHours()-3
     Response(res, 300, hour)
     return
    /* const IsOpen = checkDate()
