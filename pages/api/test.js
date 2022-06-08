@@ -2,32 +2,9 @@ import Firestore from '../../firebase/FirebaseAdminConfig'
 import {EnviarTelegram, NotificarReinicioTelegram} from '../../Telegram/SendTelegramMessage'
 
 //-------------------------Numero de Pedido del Día provisorio ---(pasar a DB)----------------
-
-let numOrder = 0;
-let currentDate = new Date()
 NotificarReinicioTelegram("reinicio del servidor")
 
-const handleNumOrder = async ()=>{
-  const newDate = new Date()
-  const hour=23, minute=59, second= 59;
-  const oldDate = new Date
-  (
-    currentDate.getFullYear(), 
-    currentDate.getMonth(), 
-    currentDate.getDate(),
-    hour,
-    minute,
-    second
-  )
-  //aqui va a haber un desface de una hora, considero usar moment js para solucionar estos entresijos pero por ahora no me molestan
-  if(newDate > oldDate){
-    numOrder = 0
-    currentDate = newDate
-    NotificarReinicioTelegram("cambio de fecha")
-  }
-  numOrder++
-}
-//----------------------------------------------------------------------------
+//----------------------DATE ID (PROVISIONAL PARA RECONOCER LOS TICKETS EN WPP  Y TELEGRAM)------------------------------
 const generateDate = () => {
   const argentinaUTCzone = -3 
   const UTCmiliseconds = new Date().getTime();
@@ -38,22 +15,16 @@ const generateDate = () => {
 }
 
 //---------isOpen?-------------------------------------------------------------
-
-//esto está alojado en Washinton dc (gmt -4) y nosotros usamos la hora de bs as (gmt -3) allá es una hora mas temprano
-const checkDate = ()=>{
-  const currentDate = ToArgentinaTime(new Date())
+//obtengo la hora UTC universal independiente del lugar donde se aloje el server y le resto 3 ya que
+// la hora de argentina es UTC-3
+const checkHour = ()=>{
+  const ArgHours = new Date().getUTCHours()-3
   const horarioDeApertura = 10
   //el horario de cierre es a las 12, no hace falta validar pues vuelve a 0
-  if(currentDate.getHours()>= horarioDeApertura){
+  if(ArgHours >= horarioDeApertura){
     return true
   }
   else return false
-}
-const ToArgentinaTime = (date)=>{
-  const numberOfMlSeconds = date.getTime();
-  const addMlSeconds = 60 * 60000; //sumo una hora al tiempo de washinton dc
-  const newDate = new Date(numberOfMlSeconds + addMlSeconds);
-  return newDate
 }
 //-------------------------JSON validator---------------------------------------------
 const ParseRequest = (request)=> {
@@ -149,7 +120,7 @@ const isValidListFormat = (lista) =>{
 
 const handler = async (req, res) => {
   if(req.method ==='POST'){
-    const IsOpen = checkDate()
+    const IsOpen = checkHour()
     if(!IsOpen){
       Response(res, 300, "el local está cerrado")
       return
@@ -189,25 +160,4 @@ const handler = async (req, res) => {
   export default handler
 
 
-  /*
-  const generateDate = () => {
-  const argentinaUTCzone = -3 
-  const UTCmiliseconds = new Date().getTime();
-  const UTCmenos3_miliseconds = UTCmiliseconds + 3600000 * argentinaUTCzone
-  const ArgentinaDATE = new Date(UTCmenos3_miliseconds)
-  return `${ArgentinaDATE.getDate()} / ${ArgentinaDATE.getHours()}/ ${ArgentinaDATE.getHours()}`
-}
-//---------isOpen?-------------------------------------------------------------
-
-//obtengo la hora UTC universal independiente del lugar donde se aloje el server y le resto 3 ya que
-// la hora de argentina es UTC-3
-const checkHour = ()=>{
-  const ArgHours = new Date().getUTCHours()-3
-  const horarioDeApertura = 10
-  //el horario de cierre es a las 12, no hace falta validar pues vuelve a 0
-  if(ArgHours >= horarioDeApertura){
-    return true
-  }
-  else return false
-}
-  */
+  
