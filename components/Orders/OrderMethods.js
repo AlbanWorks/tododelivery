@@ -44,12 +44,12 @@ const ConstructMessage = (res)=>{
 //-----------------localstorage values para evitar rellenar siempre, provisorios, lo ideal es usuario en firebase.
 
 const getLocalStorageValues = (value)=>{
-    const data =  JSON.parse(localStorage.getItem("userDataTuDelivery"))
-    const LSvalue = data[value]
-    if(LSvalue !== null) return LSvalue
-    else return ""
+    const parsedData =  JSON.parse(localStorage.getItem("userDataTuDeliverees"))
+    if(parsedData === null) return ""
+    const LSvalue = parsedData[value]
+    if(LSvalue === null) return ""
+    else return LSvalue
 } 
-
 
 const setLocalStorageValues = (Direction, Indications)=>{
     const data = {Direction, Indications}
