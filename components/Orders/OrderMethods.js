@@ -41,7 +41,23 @@ const ConstructMessage = (res)=>{
   return mensajeUTF8
 }
 
-export {checkFormat, CreateOrder, SendOrder,ConstructMessage}
+//-----------------localstorage values para evitar rellenar siempre, provisorios, lo ideal es usuario en firebase.
+
+const getLocalStorageValues = (value)=>{
+    const data =  JSON.parse(localStorage.getItem("userDataTuDelivery"))
+    const LSvalue = data[value]
+    if(LSvalue !== null) return LSvalue
+    else return ""
+} 
+
+
+const setLocalStorageValues = (Direction, Indications)=>{
+    const data = {Direction, Indications}
+    localStorage.setItem("userDataTuDelivery", JSON.stringify(data))
+}
+
+
+export {checkFormat, CreateOrder, SendOrder, ConstructMessage, getLocalStorageValues, setLocalStorageValues}
 
 
 

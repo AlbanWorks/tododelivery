@@ -1,10 +1,10 @@
-import React,{useState,useContext,useRef} from 'react'
+import React,{useState, useEffect, useContext,useRef} from 'react'
 import classes from './OrdersUI.module.css'
 import { DataContext } from '../../provider'
 import { useRouter } from 'next/router'
-import Navbar from '../Navbar/Navbar'
 import TicketListener from './TicketListener/TicketListener'
-import {checkFormat, CreateOrder, SendOrder,ConstructMessage} from './OrderMethods'
+import {checkFormat, CreateOrder, SendOrder, ConstructMessage, getLocalStorageValues, setLocalStorageValues} from './OrderMethods'
+
 
 const GatewayUI = () => {
     
@@ -16,6 +16,11 @@ const GatewayUI = () => {
     const [DirectionTitle, setDirectionTitle] = useState("Dirección *")
     const DirectionRef =useRef()
     const router = useRouter() 
+
+    useEffect(() => {
+        setDirection(getLocalStorageValues("Direction"))
+        setIndications(getLocalStorageValues("Indications"))
+    }, [])
 
     const InitSendingPorcess = async () =>{
         const formatChecking = checkFormat(Direction,Indications)
@@ -35,14 +40,14 @@ const GatewayUI = () => {
         }
         setOrderState({SuccesfulResponse:"el server ha respondido exitosamente"})
         setCartProducts([])
-       // SendWhatsapp(res)
+        setLocalStorageValues(Direction, Indications)
     }
 
     const alertInputError= ()=>{
-        DirectionRef.current.style.color = "red"
-        setDirectionTitle("Coloque una dirección válida")
+        DirectionRef.current.style.color = "rgb(245, 53, 53)"
+        setDirectionTitle("Coloque una dirección válida 🢃")
         setTimeout(() => {
-            if(DirectionRef.current !== null) DirectionRef.current.style.color = "black"
+            if(DirectionRef.current !== null) DirectionRef.current.style.color = "rgb(68, 68, 68)"
             setDirectionTitle("Dirección *")
         }, 2000);
     }
@@ -60,18 +65,20 @@ const GatewayUI = () => {
                 OrderState.notSended ?(
                 <>
                     <div className={classes.AditionalDataContainer} >
-                        <p className={classes.Title} ref={DirectionRef}>{DirectionTitle}</p>
+                        <p className={classes.Direction} ref={DirectionRef}>{DirectionTitle}</p>
                         <input 
                             type="text" 
                             onChange={(e)=>{setDirection(e.target.value)}} 
                             className={classes.InputText}
+                            defaultValue={Direction}
                         />
-                        <p className={classes.Title} >Indicaciónes, ayudanos a encontrarte (opc)</p>
+                        <p className={classes.Indications} >Indicaciónes, ayudanos a encontrarte (opcional)</p>
                         <input 
                             type="text" 
                             placeholder='Tu nombre, la descripción de tu casa, etc.' 
                             onChange={(e)=>{setIndications(e.target.value)}}
                             className={classes.InputText}
+                            defaultValue={Indications}
                         />
                     </div>
                     <div className={classes.Botonera} >

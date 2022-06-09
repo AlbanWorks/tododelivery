@@ -12,27 +12,35 @@
     flex-direction: column;
 }
 .AditionalDataContainer{
-    height: 150px;
+    height: 200px;
     width: 100%;
     padding: 10px;
     box-sizing: border-box;
 }
-.Title{
-    margin:15px 0 0 5px;
+.Direction{
+    font-family:sans-serif ;
+    margin:15px 5px 10px 5px;
+    font-size: 18px;
+    color: rgb(68, 68, 68);
+    text-shadow: 0 0 5px rgb(204, 204, 204);
+
+}
+.Indications{
+    margin:15px 5px 10px 5px;
 }
 .InputText{
     outline: none;
     border:none;
     height: 30px;
-    border-radius: 3px;
-    width: 90%;
+    border-radius: 5px;
+    width: 95%;
     max-width: 600px;
     margin:2px;
     padding-left: 10px;
-    box-shadow: 0 0 8px rgb(236, 236, 236);
+    box-shadow: 0 0 8px rgb(206, 206, 206);
 }
 .InputText:focus{
-    box-shadow: 0 0 6px rgb(209, 209, 209);
+    box-shadow: 0 0 6px rgb(148, 148, 148);
 }
 .Botonera{
     display: flex;
